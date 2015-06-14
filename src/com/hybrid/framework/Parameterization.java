@@ -118,13 +118,20 @@ public static void Browser() throws BiffException, IOException, WriteException{
 			HttpURLConnection http = (HttpURLConnection)codeChrome.openConnection();
 			int status = http.getResponseCode();
 			
+			if(status>=400 || status>=500){
+				
+				setXLValues("configuration", 2, 1, "Fail");
+				setXLValues("configuration", 3, 1, String.valueOf(status));
+				
+			}else{			
 			setXLValues("configuration", 3, 1, String.valueOf(status));
 			setXLValues("configuration", 2, 1, "Pass");
 			
-			System.out.println(status);	
+			System.out.println(status);
+			}
 			}catch (Exception e){
 				
-				setXLValues("configuration", 2, 1, "Fail");
+				
 
 				
 				e.printStackTrace();
