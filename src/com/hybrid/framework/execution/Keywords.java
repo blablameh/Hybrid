@@ -2,9 +2,9 @@ package com.hybrid.framework.execution;
 
 import static com.hybrid.framework.reports.Reports.*;
 import static com.hybrid.framework.execution.Parameterization.*;
-import static com.hybrid.framework.execution.Screenshot.*;
 import static com.hybrid.framework.reports.TimeTaken.*;
 import static com.hybrid.framework.locators.XpathLocator.*;
+import static com.hybrid.framework.reports.Screenshot.*;
 
 import java.io.IOException;
 import java.util.Date;

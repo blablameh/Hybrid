@@ -1,5 +1,6 @@
-package com.hybrid.framework.execution;
-import static com.hybrid.framework.execution.Parameterization.*;
+package com.hybrid.framework.reports;
+
+import static com.hybrid.framework.execution.Parameterization.driver;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,15 +9,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 
+import com.hybrid.framework.execution.Parameterization;
 
 public class Screenshot {
 	
@@ -54,4 +57,5 @@ public class Screenshot {
 	}
 	
 	
+
 }

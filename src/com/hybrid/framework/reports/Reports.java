@@ -1,8 +1,7 @@
 package com.hybrid.framework.reports;
 
 import static com.hybrid.framework.execution.Parameterization.wwbCopy;
-import static com.hybrid.framework.execution.Screenshot.getScreenshot;
-
+import static com.hybrid.framework.reports.Screenshot.*;
 import java.io.File;
 
 import jxl.write.Label;
@@ -11,7 +10,6 @@ import jxl.write.WritableSheet;
 import jxl.write.WriteException;
 
 import com.hybrid.framework.execution.Parameterization;
-import com.hybrid.framework.execution.Screenshot;
 
 public class Reports {
 

@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class Browsers {
@@ -37,10 +38,10 @@ public class Browsers {
 			if(browser.equalsIgnoreCase("Firefox")){
 		
 		// Set firefox profile
-			FirefoxProfile fp = new FirefoxProfile(new File("C:\\Users\\Praveen\\AppData\\Local\\Mozilla\\Firefox\\Profiles\\6jngal82.default"));
-		//fp.setPreference("network.proxy.type", 1);
-			fp.setPreference("http.proxyHost", "10.200.1.3");
-			fp.setPreference("http.proxyPort", "3128");
+			ProfilesIni ini = new ProfilesIni();
+			FirefoxProfile fp = ini.getProfile("default");
+			//fp.setPreference("http.proxyHost", "10.200.1.3");
+			//fp.setPreference("http.proxyPort", "3128");
 			driver = new FirefoxDriver(fp);
 			driver.manage().window().maximize();
 			
@@ -53,6 +54,18 @@ public class Browsers {
 		try{
 			HttpURLConnection http = (HttpURLConnection)code.openConnection();
 			int status = http.getResponseCode();
+			if(status>=400 || status>=500){
+				setXLValues("configuration", 2, 1, "Fail");
+				setXLValues("configuration", 3, 1, String.valueOf(status));
+				
+			} else
+			 {			
+			setXLValues("configuration", 3, 1, String.valueOf(status));
+			setXLValues("configuration", 2, 1, "Pass");
+			 }
+			
+			
+			
 			System.out.println(status);	
 			}catch (Exception e){
 				e.printStackTrace();
