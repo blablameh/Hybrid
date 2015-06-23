@@ -9,6 +9,7 @@ import java.net.URL;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -83,6 +84,8 @@ public class Browsers {
 			ChromeOptions option = new ChromeOptions();
 			option.addArguments("--test-type");
 			driver = new ChromeDriver(option);
+			//String dSize = getContent(Filepath, SheetName, "Dimension", 1);
+			//Dimension dmn = new Dimension(dSize);
 			driver.manage().window().maximize();
 			String statusCodechrome = getContent(Filepath, SheetName, "URL", 1);
 			driver.get(statusCodechrome);

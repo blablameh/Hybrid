@@ -287,14 +287,25 @@ public class Keywords {
 		case "getlocation":
 			
 			Point point = driver.findElement(By.xpath(xpath)).getLocation();
+			int xLocation = point.x;
+			int yLocation = point.y;
 			try{
-			int x = point.x;
-			int y = point.y;
-			System.out.println("Location x is " +x);
-			System.out.println("Location y is " +y);
+				
+			endTimes = sdf.format(new Date().getTime());	
+			
+			setXLValues("objects", 9, statusRow, "Pass");
+			setXLValues("objects", 13, reportStatus, "(" +String.valueOf(xLocation)+" , "+ String.valueOf(yLocation)+ ")");
+			setXLValues("objects", 11, reportStatus, getCurrentTime(startTimes, endTimes));
+			setReports("objects", 12, reportStatus, "Location works fine");
+			
 			} catch(Exception e){
-				
-				
+
+				endTimes = sdf.format(new Date().getTime());
+
+				setXLValues("objects", 9, statusRow, "Fail");
+				setXLValues("objects", 13, reportStatus, String.valueOf(xLocation)+" , "+ String.valueOf(yLocation));
+				setReports("objects", 12, reportStatus, "Location doesn't work");
+				setXLValues("objects", 11, reportStatus, getCurrentTime(startTimes, endTimes));	
 				
 			}
 			break;
@@ -311,7 +322,29 @@ public class Keywords {
 			
 			break;
 			
+		case "navigate":
+			
+			driver.navigate().to(value);
+			
+			break;
+			
+		case "forward":
+			
+			System.out.println("started");
+			driver.navigate().forward();
+			System.out.println("F completed");
+			break;
+			
 		case "back":
+			
+			driver.navigate().back();
+			
+			break;
+			
+		case "refresh":
+			System.out.println("started");
+
+			driver.navigate().refresh();
 			
 			break;
 			
