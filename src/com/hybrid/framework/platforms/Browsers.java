@@ -78,8 +78,8 @@ public class Browsers {
 		else if(browser.equalsIgnoreCase("chrome"))
 		{
 			
-			System.setProperty("http.proxyHost", "10.200.1.3");
-			System.setProperty("http.proxyPort", "3128");
+			//System.setProperty("http.proxyHost", "10.200.1.3");
+			//System.setProperty("http.proxyPort", "3128");
 			System.setProperty("webdriver.chrome.driver" , "Drivers\\chromedriver.exe" );
 			ChromeOptions option = new ChromeOptions();
 			option.addArguments("--test-type");
