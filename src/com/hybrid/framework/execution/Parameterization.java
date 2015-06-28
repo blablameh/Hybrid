@@ -9,6 +9,7 @@ import jxl.read.biff.BiffException;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import static com.hybrid.framework.platforms.Browsers.*;
+import static com.hybrid.framework.reports.Reports.setXLValues;
 
 public class Parameterization {
 	
@@ -41,9 +42,9 @@ public static void run() throws BiffException, IOException, WriteException{
 		
 	String actioncoloumn = getContent(Filepath, SheetName1, "Action", a);
 	String values = getContent(Filepath, SheetName1, "Values", a);
-	String xpath = 	getContent(Filepath, SheetName1, "Locator", a);
+	String xpath = 	getContent(Filepath, SheetName1, "X-path Locator", a);
 	
-	String end = getContent(Filepath, SheetName1, "S.No", a);
+	String end = getContent(Filepath, SheetName1, "Testcase id", a);
 	testCaseID = end;
 	gxpath=xpath;
 	String expected = getContent(Filepath, SheetName1, "Expected Content", a);
@@ -62,6 +63,9 @@ public static void run() throws BiffException, IOException, WriteException{
 else{
 	
 	//System.out.println("Not Tested, Set the \"end\" position part correctly in XLSheet");
+	if(!readyTest.isEmpty() && readyTest.length()!=0){
+	setXLValues("objects", 9, a, "Not ready");
+	}
 }
 	
 a++;	
@@ -74,6 +78,8 @@ public static void exit() throws WriteException, IOException{
 	wwbCopy.close();
 	wbook.close();
 	driver.quit();
+	System.out.println("******Testcases Completed******");
+	
 	
 }
 
@@ -82,12 +88,13 @@ public static void exit() throws WriteException, IOException{
 public static void main(String[] args) throws BiffException, IOException, WriteException {
 	
 	//Filepath="Test-input/" + args[0];
+			
 	Browser();
 	run();
     exit();
-					
+	
+	}				
+    
 
 	
-}
-
 }

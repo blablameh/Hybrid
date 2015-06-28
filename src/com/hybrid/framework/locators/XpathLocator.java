@@ -11,7 +11,7 @@ public class XpathLocator {
 	public static WebElement getXpathElement(String xpath){
 		
 		try{
-		WebDriverWait Ww = new WebDriverWait(driver, 30);
+		WebDriverWait Ww = new WebDriverWait(driver, 45);
 		
 		return Ww.until(ExpectedConditions.visibilityOfElementLocated(((By.xpath(xpath)))));
 		}catch(Exception e){

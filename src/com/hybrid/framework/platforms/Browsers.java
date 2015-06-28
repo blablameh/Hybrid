@@ -10,6 +10,7 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -34,6 +35,8 @@ public class Browsers {
 			
 							     }
 		
+		System.out.println("******Testcases Started******");
+		
 		// Get the method name from Parameterization class for browser
 			String browser = getContent(Filepath, SheetName, "Browser", 1);
 			if(browser.equalsIgnoreCase("Firefox")){
@@ -56,13 +59,13 @@ public class Browsers {
 			HttpURLConnection http = (HttpURLConnection)code.openConnection();
 			int status = http.getResponseCode();
 			if(status>=400 || status>=500){
-				setXLValues("configuration", 2, 1, "Fail");
-				setXLValues("configuration", 3, 1, String.valueOf(status));
+				setXLValues("configuration", 3, 1, "Fail");
+				setXLValues("configuration", 4, 1, String.valueOf(status));
 				
 			} else
 			 {			
-			setXLValues("configuration", 3, 1, String.valueOf(status));
-			setXLValues("configuration", 2, 1, "Pass");
+			setXLValues("configuration", 4, 1, String.valueOf(status));
+			setXLValues("configuration", 3, 1, "Pass");
 			 }
 			
 			
@@ -84,9 +87,10 @@ public class Browsers {
 			ChromeOptions option = new ChromeOptions();
 			option.addArguments("--test-type");
 			driver = new ChromeDriver(option);
-			//String dSize = getContent(Filepath, SheetName, "Dimension", 1);
-			//Dimension dmn = new Dimension(dSize);
-			driver.manage().window().maximize();
+			String dSize = getContent(Filepath, SheetName, "Dimension", 1);
+			Dimension dmn = new Dimension(Integer.valueOf(dSize.split("\\*")[0]), Integer.valueOf(dSize.split("\\*")[1]));
+			driver.manage().window().setSize(dmn);
+			
 			String statusCodechrome = getContent(Filepath, SheetName, "URL", 1);
 			driver.get(statusCodechrome);
 			URL codeChrome = new URL(statusCodechrome);
@@ -94,13 +98,13 @@ public class Browsers {
 				HttpURLConnection http = (HttpURLConnection)codeChrome.openConnection();
 				int status = http.getResponseCode();
 				if(status>=400 || status>=500){
-					setXLValues("configuration", 2, 1, "Fail");
-					setXLValues("configuration", 3, 1, String.valueOf(status));
+					setXLValues("configuration", 3, 1, "Fail");
+					setXLValues("configuration", 4, 1, String.valueOf(status));
 					
 				} else
 				 {			
-				setXLValues("configuration", 3, 1, String.valueOf(status));
-				setXLValues("configuration", 2, 1, "Pass");
+				setXLValues("configuration", 4, 1, String.valueOf(status));
+				setXLValues("configuration", 3, 1, "Pass");
 				System.out.println(status);
 				 }
 				}catch (Exception e){
