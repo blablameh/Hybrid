@@ -12,8 +12,6 @@ public static SimpleDateFormat sdf = new SimpleDateFormat("ss");
 		
 
 		int timetaken = Integer.valueOf(endTime)-Integer.valueOf(startTime);
-		System.out.println("start-time "+startTime);
-		System.out.println("end-time "+endTime);
 		if(timetaken>60){
 		timetaken = timetaken/60;
 		return timetaken+" Min(s)";

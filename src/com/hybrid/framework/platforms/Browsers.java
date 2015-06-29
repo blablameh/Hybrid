@@ -47,7 +47,10 @@ public class Browsers {
 			//fp.setPreference("http.proxyHost", "10.200.1.3");
 			//fp.setPreference("http.proxyPort", "3128");
 			driver = new FirefoxDriver(fp);
-			driver.manage().window().maximize();
+			String fSize = getContent(Filepath, SheetName, "Dimension", 1);
+			
+			Dimension fDmn = new Dimension(Integer.valueOf(fSize.split("\\*")[0]), Integer.valueOf(fSize.split("\\*")[1]));
+			driver.manage().window().setSize(fDmn);
 			
 		// Get the method name from Parameterization class for URL
 			String statusCode = getContent(Filepath, SheetName, "URL", 1);
@@ -70,7 +73,6 @@ public class Browsers {
 			
 			
 			
-			System.out.println(status);	
 			}catch (Exception e){
 				e.printStackTrace();
 								}
@@ -87,8 +89,8 @@ public class Browsers {
 			ChromeOptions option = new ChromeOptions();
 			option.addArguments("--test-type");
 			driver = new ChromeDriver(option);
-			String dSize = getContent(Filepath, SheetName, "Dimension", 1);
-			Dimension dmn = new Dimension(Integer.valueOf(dSize.split("\\*")[0]), Integer.valueOf(dSize.split("\\*")[1]));
+			String cSize = getContent(Filepath, SheetName, "Dimension", 1);
+			Dimension dmn = new Dimension(Integer.valueOf(cSize.split("\\*")[0]), Integer.valueOf(cSize.split("\\*")[1]));
 			driver.manage().window().setSize(dmn);
 			
 			String statusCodechrome = getContent(Filepath, SheetName, "URL", 1);
@@ -105,7 +107,6 @@ public class Browsers {
 				 {			
 				setXLValues("configuration", 4, 1, String.valueOf(status));
 				setXLValues("configuration", 3, 1, "Pass");
-				System.out.println(status);
 				 }
 				}catch (Exception e){
 					e.printStackTrace();
